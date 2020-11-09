@@ -29,7 +29,7 @@
                     </select>
                     <br>
                     <label for="tanggalLahir">Tanggal Lahir</label>
-                    <input type="date" class="form-control" name="tanggalLahir" id="tanggalLahir" th:value="${anggota.tanggalLahir}" required/>
+                    <input type="date" class="form-control" name="tanggalLahir" id="tanggalLahir" th:value="${anggota.tanggalLahir}" th:field="*{tanggalLahir}" required/>
                     <br>
                     <label for="alamat">Alamat</label>
                     <input type="text" class="form-control" name="alamat" id="alamat" th:value="${anggota.alamat}" required/>
