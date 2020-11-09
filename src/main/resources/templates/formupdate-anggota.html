@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Update Anggota</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="card" style="margin: 2% 25% 2% 25%">
+            <div class="card-header bg-dark text-center text-white font-weight-bold">Form Anggota</div>
+            <div class="card-body">
+                <div th:if="${submitted == 'true'}" class="alert alert-success" role="alert">
+                    <p class="mt-3" th:text="'Anggota dengan NIA ' + ${anggota.nia} + ' berhasil disimpan'"></p>
+                </div>
+                <form th:action="@{/anggota/ubah/} + ${anggota.nia}" th:object="${anggota}" method="POST">
+                    <label for="nia">NIA</label>
+                    <input type="text" class="form-control" name="nia" id="nia" th:value="${anggota.nia}" readonly/>
+                    <br>
+                    <label for="nama">nama</label>
+                    <input type="text" class="form-control" name="nama" id="nama" th:value="${anggota.nama}" required/>
+                    <br>
+                    <label for="jenisKelamin">Jenis Kelamin</label>
+                    <select class="form-control" name="jenisKelamin" id="jenisKelamin">
+                        <option value="1" th:selected="${anggota.jenisKelamin == 1}">Laki-laki</option>
+                        <option value="2" th:selected="${anggota.jenisKelamin == 2}">Perempuan</option>
+                    </select>
+                    <br>
+                    <label for="tanggalLahir">Tanggal Lahir</label>
+                    <input type="date" class="form-control" name="tanggalLahir" id="tanggalLahir" th:value="${anggota.tanggalLahir}" required/>
+                    <br>
+                    <label for="alamat">Alamat</label>
+                    <input type="text" class="form-control" name="alamat" id="alamat" th:value="${anggota.alamat}" required/>
+                    <br>
+                    <label for="noHp">No HP</label>
+                    <input type="text" class="form-control" name="noHp" id="noHp" th:value="${anggota.noHp}" required/>
+                    <br>
+                    <label for="pekerjaan">Pekerjaan</label>
+                    <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" th:value="${anggota.pekerjaan}" required/>
+                    <br>
+                    <label for="status">Status</label>
+                    <select class="form-control" name="status" id="status">
+                        <option value="1" th:selected="${anggota.status == 1}">Umum</option>
+                        <option value="2" th:selected="${anggota.status == 2}">Sivitas</option>
+                    </select>
+                    <br>
+                    <br>
+                    <div class="text-right">
+                        <a th:href="@{/anggota/} + ${anggota.nia}" class="btn btn-outline-dark mr-2">Batal</a>
+                        <button class="btn btn-dark" type="submit" value="Submit">Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

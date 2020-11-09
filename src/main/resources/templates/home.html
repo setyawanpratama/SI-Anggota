@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View All Resep</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="container-fluid" style="margin-top: 5%">
+    <a th:href="@{/anggota/tambah/}" class="btn btn-secondary mb-4">+ Add Anggota</a>
+    <div class="card">
+        <div class="card-header bg-dark text-center text-bold text-white">
+            Daftar Anggota
+        </div>
+        <div clas="card-body" style="margin: 0% 2% 0% 2%">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>NIA</th>
+                    <th>Nama</th>
+                    <th>Gender</th>
+                    <th>Tanggal Lahir</th>
+                    <th>Alamat</th>
+                    <th>No HP</th>
+                    <th>Pekerjaan</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="anggota, iterationStatus : ${listAnggota}">
+                    <td th:text="${iterationStatus.count}"></td>
+                    <td><a th:href="@{/anggota/} + ${anggota.nia}" th:text="${anggota.nia}"></a></td>
+                    <td th:text="${anggota.nama}"></td>
+                    <td>
+                        <div th:if="${anggota.jenisKelamin==1}">Laki-laki</div>
+                        <div th:if="${anggota.jenisKelamin==2}">Perempuan</div>
+                    </td>
+                    <td th:text="${anggota.tanggalLahir}"></td>
+                    <td th:text="${anggota.alamat}"></td>
+                    <td th:text="${anggota.noHp}"></td>
+                    <td th:text="${anggota.pekerjaan}"></td>
+                    <td>
+                        <div th:if="${anggota.status==1}">Umum</div>
+                        <div th:if="${anggota.status==2}">Sivitas</div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

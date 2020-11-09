@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Add Anggota</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <div class="card" style="margin: 2% 25% 2% 25%">
+            <div class="card-header bg-dark font-weight-bold text-center text-white">
+                Tambah Anggota
+            </div>
+            <div class="card-body">
+                <div th:if="${error == 'true'}" class="alert alert-danger" role="alert">
+                    <p class="mt-3" th:text="'Sudah terdapat anggota dengan NIA ' + ${nia}"></p>
+                </div>
+                <form th:href="@{/anggota/tambah}" th:object="${anggota}" method="POST">
+                    <input type="hidden" th:field="*{id}"/>
+                    <label for="nia">NIA</label>
+                    <input type="text" class="form-control" name="nia" id="nia" placeholder="NIA" required/>
+                    <br>
+                    <label for="nama">nama</label>
+                    <input type="text" class="form-control" name="nama" id="nama" placeholder="Nama" required/>
+                    <br>
+                    <label for="jenisKelamin">Jenis Kelamin</label>
+                    <select class="form-control" name="jenisKelamin" id="jenisKelamin" required>
+                        <option value="1">Laki-laki</option>
+                        <option value="2">Perempuan</option>
+                    </select>
+                    <br>
+                    <label for="tanggalLahir">Tanggal Lahir</label>
+                    <input type="date" class="form-control" name="tanggalLahir" id="tanggalLahir" placeholder="MM/DD/YYYY" required/>
+                    <br>
+                    <label for="alamat">Alamat</label>
+                    <input type="text" class="form-control" name="alamat" id="alamat" placeholder="Alamat" required/>
+                    <br>
+                    <label for="noHp">No HP</label>
+                    <input type="text" class="form-control" name="noHp" id="noHp" placeholder="Nomor Handphone" required/>
+                    <br>
+                    <label for="pekerjaan">Pekerjaan</label>
+                    <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" placeholder="Pekerjaan" required/>
+                    <br>
+                    <label for="status">Status</label>
+                    <select class="form-control" name="status" id="status" required>
+                        <option value="1">Umum</option>
+                        <option value="2">Sivitas</option>
+                    </select>
+                    <br>
+                    <br>
+                    <div class="text-right">
+                        <a th:href="@{/}" class="btn btn-outline-dark mr-2">Batal</a>
+                        <button class="btn btn-dark" type="submit" value="Submit">Tambah</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

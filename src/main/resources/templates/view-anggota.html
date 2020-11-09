@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Resep</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <div class="container-fluid">
+        <br/>
+        <div class="card" style="margin: 2% 30% 2% 30%">
+            <div class="card-header bg-dark text-center text-white font-weight-bold">Detail Anggota</div>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <p th:text="NIA"><p>
+                        </div>
+                        <div class="col-8">
+                            <p th:text="':  ' + ${anggota.nia}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p th:text="Nama"><p>
+                        </div>
+                        <div class="col-8">
+                            <p th:text="':  ' + ${anggota.nama}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p th:text="'Jenis Kelamin'"><p>
+                        </div>
+                        <div class="col-8">
+                            <p th:if="${anggota.jenisKelamin == 1}"><span th:text="':  Laki-laki'"></span></p>
+                            <p th:if="${anggota.jenisKelamin == 2}"><span th:text="':  Perempuan'"></span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p th:text="'Tanggal Lahir'"><p>
+                        </div>
+                        <div class="col-8">
+                            <p th:text="':  ' + ${anggota.tanggalLahir}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p th:text="Alamat"><p>
+                        </div>
+                        <div class="col-8">
+                            <p th:text="':  ' + ${anggota.alamat}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p th:text="'Nomor HP'"><p>
+                        </div>
+                        <div class="col-8">
+                            <p th:text="':  ' + ${anggota.noHp}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p th:text="Pekerjaan"><p>
+                        </div>
+                        <div class="col-8">
+                            <p th:text="':  ' + ${anggota.pekerjaan}"></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <p th:text="status"><p>
+                        </div>
+                        <div class="col-8">
+                            <p th:if="${anggota.jenisKelamin == 1}"><span th:text="':  Umum'"></span></p>
+                            <p th:if="${anggota.jenisKelamin == 2}"><span th:text="':  Sivitas'"></span></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <a th:href="@{/anggota/ubah/} + ${anggota.nia}" class="btn btn-primary mr-1">Ubah</a>
+                            <a th:href="@{/anggota/hapus/} + ${anggota.nia}" class="btn btn-danger">Hapus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
